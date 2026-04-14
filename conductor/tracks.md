@@ -11,10 +11,10 @@ This file tracks high-level milestones for the Krita CLI parent project. Impleme
   - Selection Tools (completed in krita-mcp) ✅
   - Selection Clipping Integration (completed in krita-mcp) ✅
   - Selection Code Quality & Test Coverage (completed in krita-mcp) ✅
-  - Selection Transforms & Modifiers (pending)
-  - Selection Advanced Features (pending)
-  - Selection Persistence & Session Management (pending)
-  - Security & Limits Validation (pending)
+  - Selection Transforms & Modifiers (completed in krita-mcp) ✅
+  - Selection Advanced Features (completed in krita-mcp) ✅
+  - Selection Persistence & Session Management (completed in krita-mcp) ✅
+  - Security & Limits Validation (completed in krita-mcp) ✅
 
 - [ ] **Track: Phase 12 — Integration & E2E**
   *Link: [krita-mcp/conductor/tracks.md](../krita-mcp/conductor/tracks.md)*
