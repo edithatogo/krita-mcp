@@ -6,7 +6,7 @@ This file tracks high-level milestones for the Krita CLI parent project. Impleme
 
 ## Active Tracks
 
-- [ ] **Track: Parent Project Setup**
+- [x] **Track: Parent Project Setup**
   *Link: [./tracks/parent_project_setup_20260414/](./tracks/parent_project_setup_20260414/)*
   - Create conductor structure at root level
   - Reference krita-mcp subproject
