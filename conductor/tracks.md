@@ -6,12 +6,6 @@ This file tracks high-level milestones for the Krita CLI parent project. Impleme
 
 ## Active Tracks
 
-- [x] **Track: Parent Project Setup**
-  *Link: [./tracks/parent_project_setup_20260414/](./tracks/parent_project_setup_20260414/)*
-  - Create conductor structure at root level
-  - Reference krita-mcp subproject
-  - Define cross-project workflow
-
 - [ ] **Track: Phase 11 Features Oversight**
   *Link: [krita-mcp/conductor/tracks.md](../krita-mcp/conductor/tracks.md)*
   - Selection Tools (completed in krita-mcp)
