@@ -25,9 +25,9 @@
     - [x] Implement Feature: Set version to 1.0.0, fill in metadata (description, classifiers, license, URLs)
 - [x] Task: Test local installation
     - [x] Implement Feature: `pip install` from built wheel, verify `krita --version` and `krita --help`
-- [~] Task: Tag and publish release
+- [x] Task: Tag and publish release
+    - [x] Implement Feature: Git tag v1.0.0, push to GitHub, create GitHub Release with notes
+    - [x] Implement Feature: Upload to PyPI via `twine upload`
+- [x] Task: Post-release verification
+    - [x] Implement Feature: `pip install krita-cli` from PyPI, verify clean install and basic commands work
 
-    - [ ] Implement Feature: Git tag v1.0.0, push to GitHub, create GitHub Release with notes
-    - [ ] Implement Feature: Upload to PyPI via `twine upload`
-- [ ] Task: Post-release verification
-    - [ ] Implement Feature: `pip install krita-cli` from PyPI, verify clean install and basic commands work
