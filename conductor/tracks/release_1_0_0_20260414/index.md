@@ -1,4 +1,4 @@
-# Track parent_project_setup_20260414 Context
+# Track release_1_0_0_20260414 Context
 
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)

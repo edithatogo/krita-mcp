@@ -35,6 +35,18 @@ venv/
 .DS_Store
 Thumbs.db
 
+# Project
+logs/
+pytest-of-*/
+.swarm/
+.gemini/
+.geminiignore
+history.log
+refactor_plugin.py
+krita-mcp/dist/
+krita-mcp/build/
+krita-mcp/*.egg-info/
+
 # uv
 uv.lock
 

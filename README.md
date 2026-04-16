@@ -1,106 +1,92 @@
-# Krita CLI
+# Krita CLI & MCP Server
 
-Parent project for the **Krita MCP** ecosystem — a SOTA CLI + MCP server for programmatic painting in Krita.
+[![CI](https://github.com/github/krita-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/github/krita-cli/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/pypi/v/krita-cli)](https://pypi.org/project/krita-cli/)
+[![License](https://img.shields.io/github/license/github/krita-cli)](LICENSE)
 
-## Overview
+A state-of-the-art **CLI interface** and **MCP server** for programmatic painting and automation in [Krita](https://krita.org/).
 
-This repository orchestrates and manages the `krita-mcp` subproject, which provides:
+## 🌟 Overview
 
-- **CLI Interface**: `krita stroke --points 100,100 200,200` — direct command-line control
-- **MCP Server**: FastMCP server for AI agents (Claude, etc.) to paint programmatically
-- **Krita Plugin**: Python plugin inside Krita that executes paint commands
+Krita CLI provides a bridge between AI agents (like Claude), developers, and the Krita desktop application. It enables real-time painting, canvas manipulation, and workflow automation via the Model Context Protocol (MCP) and a powerful command-line interface.
 
-Both CLI and MCP talk to the Krita plugin via HTTP on localhost:5678.
+- **FastMCP Server**: Exposes 40+ specialized tools to AI agents.
+- **Rich CLI**: Grouped commands for layers, selections, brushes, and session history.
+- **Core Library**: Typed Python client (`krita_client`) for custom automation.
+- **Krita Plugin**: High-performance Python plugin with numpy-accelerated rendering.
 
-## Quick Start
+## 🚀 Quick Start
 
-### Prerequisites
+### 1. Prerequisites
+- **Krita 5.2+** (with Python scripting enabled)
+- **Python 3.12+**
+- [**uv**](https://github.com/astral-sh/uv) (recommended) or `pip`
 
-- Python 3.12+
-- [uv](https://github.com/astral-sh/uv) package manager
-- Krita (with Python plugin support)
-
-### Setup
+### 2. Installation
 
 ```bash
-# Navigate to the core application
-cd krita-mcp
+# Clone the repository
+git clone https://github.com/github/krita-cli.git
+cd krita-cli/krita-mcp
 
-# Install dependencies
+# Install dependencies and the package
 uv sync
+```
 
-# Install Krita plugin (copy to Krita's plugin directory)
-# Windows: %APPDATA%\krita\pykrita\
-# Linux: ~/.local/share/krita/pykrita/
-# macOS: ~/Library/Application Support/krita/pykrita/
+### 3. Setup Krita Plugin
+Copy the contents of `krita-mcp/krita-plugin/` to your Krita resource folder:
+- **Windows**: `%APPDATA%\krita\pykrita\`
+- **Linux**: `~/.local/share/krita/pykrita/`
+- **macOS**: `~/Library/Application Support/krita/pykrita/`
 
-# Enable plugin in Krita: Settings → Configure Krita → Python Plugin Manager
+Enable **"Krita MCP Bridge"** in Krita via *Settings → Configure Krita → Python Plugin Manager*. Restart Krita.
 
-# Run CLI
+## 🛠️ Usage
+
+### Command Line Interface (CLI)
+```bash
+# Check connection
 uv run krita health
 
-# Run MCP server
-uv run python -m krita_mcp.server
+# Paint a stroke
+uv run krita stroke --points 100,100 150,200 200,100
+
+# Manage layers
+uv run krita layers list
+uv run krita layers create --name "Background"
+
+# Replay a session
+uv run krita replay history.json
 ```
 
-## Project Structure
-
-```
-krita-cli/
-├── conductor/                    ← Project management (this project)
-│   ├── product.md                ← Parent project purpose
-│   ├── tech-stack.md             ← Technology stack
-│   ├── workflow.md               ← Development workflow
-│   ├── tracks.md                 ← High-level milestones
-│   └── tracks/                   ← Track implementation plans
-└── krita-mcp/                    ← Core Application
-    ├── conductor/                ← Subproject conductor
-    ├── src/
-    │   ├── krita_client/         ← Core client library
-    │   ├── krita_mcp/            ← MCP server
-    │   └── krita_cli/            ← CLI interface
-    ├── krita-plugin/             ← Krita plugin
-    └── tests/                    ← Test suite
-```
-
-## Development
-
-### Using Conductor
-
-This project uses the Conductor methodology for spec-driven development:
-
-- **Tracks** represent high-level units of work (features, bug fixes, etc.)
-- Each track has a `plan.md` with phased tasks
-- All work follows TDD workflow: write tests → implement → verify coverage
-- Track progress in `conductor/tracks.md`
-
-### Commands
-
+### MCP Server (for AI Agents)
+Configure your MCP client (e.g., Claude Desktop) to run:
 ```bash
-# View project status
-/conductor:status
-
-# Implement next track
-/conductor:implement
-
-# Implement specific track
-/conductor:implement "<track_description>"
+uv --directory /path/to/krita-cli/krita-mcp run python -m krita_mcp.server
 ```
 
-### Quality Gates
+## 🏗️ Architecture
 
-- Test coverage: >80%
-- Type coverage: 100% (enforced by ty)
-- Linting: ruff strict mode
-- All CI checks must pass before merging
+```mermaid
+graph TD
+    Agent[AI Agent / Claude] -- MCP --> MCP[MCP Server]
+    User[Developer / Artist] -- CLI --> CLI[Krita CLI]
+    MCP --> Client[krita_client lib]
+    CLI --> Client
+    Client -- HTTP/JSON --> Plugin[Krita Plugin]
+    Plugin -- API --> Krita[Krita Application]
+```
 
-## Documentation
+## 🧪 Quality Standards
+- **Test Coverage**: 95.00% (Unit, Integration, Property-based, E2E)
+- **Type Safety**: 100% type-checked with `ty`
+- **Linting**: Strict `ruff` configuration
+- **Validation**: Pydantic v2 for all command schemas
 
-- [Product Definition](conductor/product.md)
+## 📖 Documentation
+- [Product Context](conductor/product.md)
 - [Tech Stack](conductor/tech-stack.md)
-- [Workflow](conductor/workflow.md)
-- [Tracks Registry](conductor/tracks.md)
+- [Implementation Tracks](conductor/tracks.md)
 
-## License
-
-MIT License — see [LICENSE](krita-mcp/LICENSE)
+## 📄 License
+MIT License. See [LICENSE](krita-mcp/LICENSE) for details.
